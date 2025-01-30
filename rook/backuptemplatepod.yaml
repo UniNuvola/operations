@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backup-{{ ClaimName }}
+  labels:
+    app.kubernetes.io/name: backup-{{ ClaimName }}
+  namespace: {{ Namespace }}
+spec:
+  containers:
+  - name: unihubbackup
+    image: harbor1.fisgeo.unipg.it/uninuvola/unihubbackup:deployed
+    command: ["/usr/sbin/sshd", "-p", "2222", "-D"]
+    imagePullPolicy: Always
+    ports:
+      - containerPort: 2222
+        name: internalssh
+    volumeMounts:
+      - name: backup
+        mountPath: /backup/
+  restartPolicy: Always
+  imagePullSecrets:
+    - name: regcred
+  volumes:
+  - name: backup
+    persistentVolumeClaim:
+      claimName: {{ ClaimName }}
+      readOnly: false

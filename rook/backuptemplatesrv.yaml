@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backup-{{ ClaimName }}-service
+spec:
+  selector:
+    app.kubernetes.io/name: backup-{{ ClaimName }}
+  ports:
+    - protocol: TCP
+      port: 2222
+      targetPort: internalssh
