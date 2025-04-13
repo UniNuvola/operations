@@ -1,0 +1,3 @@
+[submodule "harborclean"]
+	path = harborclean
+	url = git@github.com:UniNuvola/harborclean
