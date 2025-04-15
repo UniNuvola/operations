@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
   - name: unihubbackup
-    image: harbor1.fisgeo.unipg.it/uninuvola/unihubbackup:deployed
+    image: harbor1.fisgeo.unipg.it/uninuvola/unihubbackup:main
     command: ["/usr/sbin/sshd", "-p", "2222", "-D"]
     imagePullPolicy: Always
     ports:
